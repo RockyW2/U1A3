@@ -31,15 +31,16 @@ public class IntegerSums extends javax.swing.JFrame {
         inputField = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        sumAllButton = new javax.swing.JButton();
+        sumEvenButton = new javax.swing.JButton();
+        sumOddButton = new javax.swing.JButton();
         outputField = new javax.swing.JTextField();
         exitButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         displayArea = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Integer Sums");
 
         titleLabel.setFont(new java.awt.Font("Engravers MT", 1, 14)); // NOI18N
         titleLabel.setText("Integer Sums");
@@ -60,11 +61,28 @@ public class IntegerSums extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Sum All");
+        sumAllButton.setText("Sum All");
+        sumAllButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumAllButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Sum Even");
+        sumEvenButton.setText("Sum Even");
+        sumEvenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumEvenButtonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Sum Odd");
+        sumOddButton.setText("Sum Odd");
+        sumOddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sumOddButtonActionPerformed(evt);
+            }
+        });
+
+        outputField.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
 
         exitButton.setText("Exit");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,9 +122,9 @@ public class IntegerSums extends javax.swing.JFrame {
                                         .addComponent(addButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(removeButton))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sumAllButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sumOddButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sumEvenButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(outputField)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,11 +146,11 @@ public class IntegerSums extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(sumAllButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
+                        .addComponent(sumEvenButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
+                        .addComponent(sumOddButton)
                         .addGap(18, 18, 18)
                         .addComponent(outputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -196,8 +214,8 @@ public class IntegerSums extends javax.swing.JFrame {
                         newNumList[i]=numList[i];
                     }else{
                         nListLength -=1;
-                        for(int k=i+1;k<nListLength; k++){
-                            newNumList[k-1]=numList[k];
+                        for(int k=i;k<nListLength; k++){
+                            newNumList[k]=numList[k+1];
                         }
                         
                         break;
@@ -220,6 +238,35 @@ public class IntegerSums extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void sumAllButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumAllButtonActionPerformed
+        int sumAll = 0;
+        for(int i=0; i<nListLength; i++){
+            sumAll += numList[i];
+
+        }
+        outputField.setText("The sum of all the integers is "+sumAll);
+    }//GEN-LAST:event_sumAllButtonActionPerformed
+
+    private void sumEvenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumEvenButtonActionPerformed
+        int sumEven = 0;
+        for(int i=0; i<nListLength; i++){
+            if(numList[i] % 2 == 0){
+                sumEven += numList[i];
+            }
+        }
+        outputField.setText("The sum of all the even integers is "+sumEven);
+    }//GEN-LAST:event_sumEvenButtonActionPerformed
+
+    private void sumOddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumOddButtonActionPerformed
+        int sumOdd = 0;
+        for(int i=0; i<nListLength; i++){
+            if(numList[i] % 2 == 1){
+                sumOdd += numList[i];
+            }
+        }
+        outputField.setText("The sum of all the even integers is "+sumOdd);
+    }//GEN-LAST:event_sumOddButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,12 +309,12 @@ public class IntegerSums extends javax.swing.JFrame {
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField inputField;
     private javax.swing.JLabel inputLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField outputField;
     private javax.swing.JButton removeButton;
+    private javax.swing.JButton sumAllButton;
+    private javax.swing.JButton sumEvenButton;
+    private javax.swing.JButton sumOddButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
